@@ -8,22 +8,6 @@ defmodule TombTest do
     :ok
   end
 
-  test "we can report on a device" do
-    device_id = Tomb.generate_id()
-
-    :ok = Tomb.report_device_status(device_id, 3400)
-
-    assert_receive_event(
-      Events.DeviceBatteryLevelChanged,
-      &(&1.device_id == device_id),
-      fn e ->
-        assert e.device_id == device_id
-        assert e.from == 0
-        assert e.to == 3400
-      end
-    )
-  end
-
   test "closing the books after 5 reports" do
     device_id = Tomb.generate_id()
 

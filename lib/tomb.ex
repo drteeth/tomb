@@ -36,10 +36,13 @@ defmodule Tomb do
 
   defp dispatch(command, opts) do
     with {:error, {:partition_closed, state}} <- CommandDispatcher.dispatch(command, opts) do
+      # the dispatch failed because this stream is closed
+      # Try to open the next stream, if it is already open it will no-op
       open_command = Commands.OpenPartition.from(state)
 
       case dispatch(open_command, include_execution_result: true) do
         {:ok, %{aggregate_state: state}} ->
+          # The stream is open, patch the ID we're address the command to
           command = %{command | device_uuid: device_uuid(state.device_id, state.partition)}
           dispatch(command, opts)
       end
