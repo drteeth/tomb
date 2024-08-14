@@ -45,5 +45,8 @@ identify(Device, by: :device_uuid, prefix: &partition_by_date/0`
 
 This could work well in that callers don't need to know anything about partitions, but now we need to coordinate between the clocks, and the mechanics of closing and opening streams. Further clock-drift becomes a factor in multi-node deployments.
 
+### Destructively trimming a single stream
+Instead of using multiple streams and some hand-over mechanism, it should be possible to close the stream with a single event (containing the state to carry forward), and then remove earlier events from the database. This would involve disabling Commanded EventStore's protections against mutating the eventstream, and I suspect it would involve writing SQL against EventStore's implementation. The trimming could be triggered by an event handler and could backup these older events to cold storage before performing the delete.
+
 #### Closing the stream from the outside
 How does having a scheduled command start off a cross-aggregate process of closing one partition and opening another work? What challenges are there in handling commands that arrive in the middle of the handover?
