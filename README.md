@@ -30,4 +30,20 @@ Running the test will send 25 reports to the device which should create 5 partit
 mix test test/tomb_test.exs
 ```
 
+### Alternatives to explore
 
+#### Closing the books every day using stream prefixing
+It possible to use a zero-arity function (a 'thunk'!) to prefix the stream for your aggregate, which we could use to change the active partition:
+
+```elixir
+def partition_by_date() do
+  "device-#{Date.utc_today()}"
+end
+
+identify(Device, by: :device_uuid, prefix: &partition_by_date/0`
+```
+
+This could work well in that callers don't need to know anything about partitions, but now we need to coordinate between the clocks, and the mechanics of closing and opening streams. Further clock-drift becomes a factor in multi-node deployments.
+
+#### Closing the stream from the outside
+How does having a scheduled command start off a cross-aggregate process of closing one partition and opening another work? What challenges are there in handling commands that arrive in the middle of the handover?
