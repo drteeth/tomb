@@ -19,7 +19,6 @@ defmodule Tomb.Device do
   typedstruct do
     @derive Jason.Encoder
     field :device_id, String.t()
-    field :network_id, String.t()
     field :batteryMV, non_neg_integer, default: 0
     field :report_count, non_neg_integer, default: 0
     field :partition_status, :open | :closed
@@ -37,7 +36,6 @@ defmodule Tomb.Device do
         device_id: command.state.device_id,
         partition: command.state.next_partition,
         batteryMV: command.state.batteryMV,
-        network_id: command.state.network_id
       }
     end
   end
@@ -70,7 +68,6 @@ defmodule Tomb.Device do
         device_id: event.device_id,
         partition: event.partition,
         batteryMV: event.batteryMV,
-        network_id: event.network_id
     }
   end
 

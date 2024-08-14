@@ -12,7 +12,6 @@ defmodule Tomb.Events do
   typedstruct module: DevicePartitionOpened, enforce: true do
     @derive Jason.Encoder
     field :device_id, String.t()
-    field :network_id, String.t()
     field :batteryMV, non_neg_integer
     field :partition, pos_integer
     field :version, non_neg_integer, default: 1
