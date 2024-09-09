@@ -1,10 +1,10 @@
-defmodule Tomb.Commands do
+defmodule Tomb.Partitioning.Commands do
   use TypedStruct
 
   typedstruct module: ReportDeviceStatus, enforce: true do
     field :device_uuid, String.t()
     field :device_id, String.t()
-    field :batteryMV, non_neg_integer
+    field :batteryMV, non_neg_integer()
   end
 
   typedstruct module: ClosePartition, enforce: true do

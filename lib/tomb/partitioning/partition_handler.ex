@@ -3,7 +3,7 @@ defmodule Tomb.Partitioning.PartitionHandler do
     name: "partition-handler",
     application: Tomb.CommandDispatcher
 
-  alias Tomb.Events.DevicePartitionOpened
+  alias Tomb.Partitioning.Events.DevicePartitionOpened
   alias Tomb.Partitioning.Partitions
 
   def handle(%DevicePartitionOpened{} = event, _metadata) do

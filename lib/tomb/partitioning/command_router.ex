@@ -1,8 +1,8 @@
-defmodule Tomb.CommandRouter do
+defmodule Tomb.Partitioning.CommandRouter do
   use Commanded.Commands.Router
 
-  alias Tomb.Commands
-  alias Tomb.Device
+  alias Tomb.Partitioning.Commands
+  alias Tomb.Partitioning.Device
 
   identify(Device, by: :device_uuid, prefix: "device-")
   dispatch(Commands.ReportDeviceStatus, to: Device)

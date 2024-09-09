@@ -1,4 +1,4 @@
-defmodule Tomb.Events do
+defmodule Tomb.Partitioning.Events do
   use TypedStruct
 
   typedstruct module: DeviceBatteryLevelChanged, enforce: true do

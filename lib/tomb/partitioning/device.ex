@@ -1,4 +1,4 @@
-defmodule Tomb.Device do
+defmodule Tomb.Partitioning.Device do
   use TypedStruct
 
   @moduledoc """
@@ -12,8 +12,8 @@ defmodule Tomb.Device do
      We need to close the books on it every day
   """
 
-  alias Tomb.Commands
-  alias Tomb.Events
+  alias Tomb.Partitioning.Commands
+  alias Tomb.Partitioning.Events
   alias Commanded.Aggregate.Multi
 
   typedstruct do

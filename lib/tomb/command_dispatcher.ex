@@ -3,5 +3,5 @@ defmodule Tomb.CommandDispatcher do
     otp_app: :tomb,
     event_store: Application.compile_env!(:tomb, :event_store)
 
-  router(Tomb.CommandRouter)
+  router(Tomb.Partitioning.CommandRouter)
 end
