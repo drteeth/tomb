@@ -7,10 +7,9 @@ defmodule Tomb.Storage do
   end
 
   defp reset_eventstore! do
-    # config = Tomb.EventStore.config()
-    # {:ok, conn} = Postgrex.start_link(config)
-
-    # {:ok, :ok} = EventStore.Storage.Initializer.reset!(conn, config)
-    Commanded.EventStore.Adapters.InMemory.reset!(Tomb.CommandDispatcher)
+    config = Tomb.EventStore.config()
+    {:ok, conn} = Postgrex.start_link(config)
+    {:ok, :ok} = EventStore.Storage.Initializer.reset!(conn, config)
+    :ok
   end
 end

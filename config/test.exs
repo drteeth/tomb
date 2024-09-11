@@ -20,12 +20,6 @@ config :tomb, Tomb.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
-config :tomb,
-  event_store: [
-    adapter: Commanded.EventStore.Adapters.InMemory,
-    serializer: Commanded.Serialization.JsonSerializer
-  ]
-
 config :tomb, Tomb.EventStore,
   hostname: "localhost",
   username: "postgres",

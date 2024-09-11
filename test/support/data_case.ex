@@ -45,6 +45,7 @@ defmodule Tomb.DataCase do
   end
 
   setup tags do
+    Tomb.Storage.reset!()
     Tomb.DataCase.setup_sandbox(tags)
     :ok
   end

@@ -1,5 +1,5 @@
 defmodule TombPartitioningTest do
-  use Tomb.DataCase, async: true
+  use Tomb.DataCase
 
   alias Tomb.Partitioning
 
