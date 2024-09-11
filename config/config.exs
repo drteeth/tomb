@@ -17,6 +17,7 @@ config :tomb,
   ]
 
 config :tomb, Tomb.EventStore,
+  enable_hard_deletes: true,
   hostname: "localhost",
   username: "postgres",
   password: "postgres",

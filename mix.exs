@@ -51,6 +51,10 @@ defmodule Tomb.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:commanded, "~> 1.4"},
       {:commanded_eventstore_adapter, "~> 1.4"},
+      {:eventstore,
+       git: "https://github.com/bitfield-co/eventstore",
+       branch: "support-trimming-streams",
+       override: true},
       {:oban, "~> 2.16"},
       {:typedstruct, "~> 0.5.2"}
     ]

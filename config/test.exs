@@ -26,7 +26,7 @@ config :tomb, Tomb.EventStore,
   password: "postgres",
   database: "tomb_eventstore_test#{partition}",
   serializer: Commanded.Serialization.JsonSerializer,
-  pool_size: 1
+  pool_size: 2
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
