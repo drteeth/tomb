@@ -49,12 +49,15 @@ defmodule Tomb.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.4"},
       {:plug_cowboy, "~> 2.5"},
-      {:commanded, "~> 1.4"},
-      {:commanded_eventstore_adapter, "~> 1.4"},
+      {:commanded,
+       git: "https://github.com/bitfield-co/commanded",
+       branch: "trim_stream_to_version",
+       override: true},
       {:eventstore,
        git: "https://github.com/bitfield-co/eventstore",
-       branch: "support-trimming-streams",
+       branch: "trim_stream_to_version",
        override: true},
+      {:commanded_eventstore_adapter, "~> 1.4"},
       {:oban, "~> 2.16"},
       {:typedstruct, "~> 0.5.2"}
     ]

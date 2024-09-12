@@ -17,10 +17,11 @@ defmodule Tomb.Destructive.Device do
   end
 
   def execute(device, %Commands.CloseReportingPeriod{}) do
-    %Events.ReportingPeriodClosed{
-      device_id: device.device_id,
-      batteryMV: device.batteryMV
-    }
+    {:trim_stream,
+     %Events.ReportingPeriodClosed{
+       device_id: device.device_id,
+       batteryMV: device.batteryMV
+     }}
   end
 
   def apply(%__MODULE__{} = device, %Events.DeviceBatteryLevelChanged{} = event) do
