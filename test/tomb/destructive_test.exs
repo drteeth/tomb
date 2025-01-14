@@ -2,8 +2,8 @@ defmodule Tomb.DestructiveTest do
   use Tomb.DataCase
 
   alias Tomb.Destructive
-  alias Tomb.Destructive.Device
   alias Tomb.Destructive.Events.ReportingPeriodClosed
+  alias Tomb.Destructive.Device
   alias Tomb.Destructive.CommandRouter
 
   test "closing the books after 5 reports" do
@@ -25,5 +25,7 @@ defmodule Tomb.DestructiveTest do
     # Then the stream should only contain the tombstone event
     {:ok, events} = Tomb.EventStore.read_stream_forward(stream_uuid)
     assert Enum.count(events) == 1
+    [event] = events
+    assert match?(%ReportingPeriodClosed{}, event.data)
   end
 end

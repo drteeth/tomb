@@ -20,9 +20,9 @@ defmodule TombWeb do
   def controller do
     quote do
       use Phoenix.Controller, namespace: TombWeb
+      use Gettext, backend: TombWeb.Gettext
 
       import Plug.Conn
-      import TombWeb.Gettext
       alias TombWeb.Router.Helpers, as: Routes
     end
   end
@@ -80,7 +80,7 @@ defmodule TombWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import TombWeb.Gettext
+      use Gettext, backend: TombWeb.Gettext
     end
   end
 
@@ -88,6 +88,7 @@ defmodule TombWeb do
     quote do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
+      use Gettext, backend: TombWeb.Gettext
 
       # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
       import Phoenix.LiveView.Helpers
@@ -96,7 +97,6 @@ defmodule TombWeb do
       import Phoenix.View
 
       import TombWeb.ErrorHelpers
-      import TombWeb.Gettext
       alias TombWeb.Router.Helpers, as: Routes
     end
   end
